@@ -8,12 +8,16 @@
 #   License plate model
 
 import plate_parser as pp
+import plate_model as pm
+
+pm.init()
 
 # Tokenise input
 
 a = 'Test Input a'
 b = 'TeST inPUT b'
 c = 'TEST INPUT 3'
+d = 'TESTPLA'
 
 inputs = [a,b,c]
 
@@ -25,4 +29,5 @@ for s in inputs:
     l1.debug()
 
 
-
+A = pm.generate_permutations(d)
+print(A)
