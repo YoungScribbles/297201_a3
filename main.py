@@ -7,10 +7,9 @@
 #
 #   License plate model
 
+import pandas as pd
 import plate_parser as pp
 import plate_model as pm
-
-pm.init()
 
 # Tokenise input
 
@@ -21,13 +20,14 @@ d = 'TESTPLA'
 
 inputs = [a,b,c]
 
-for s in inputs:
-    print(s)
-    l1 = pp.process_input(s)
-    l1.debug()
-    l1.convert_to_uint8()
-    l1.debug()
+mod = pm.PlateModel('./data/applications.csv')
+mod.build_model()
+mod.evaluate_model()
 
+while 1:
+    p = input('Enter your license plate: ')
 
-A = pm.generate_permutations(d)
-print(A)
+    if p == 'q':
+        break
+
+    mod.predict_approved(p)
